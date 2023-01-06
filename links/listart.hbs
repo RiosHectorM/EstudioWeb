@@ -1,0 +1,85 @@
+{{>navigation}}
+<div id="booking" class="section">
+  <div class="">
+    <div class="container">
+      <div class="row">
+        <div class="booking-form row">
+          <h5 class="badge bg-primary fs-5">BUSCAR ART</h5>
+          <input class="form-control mt-2" type="text" name="search" id="search" placeholder="Ingrese nombre de Cliente" />
+            <div class="table-responsive mt-3">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th class="bg-primary fs-5 text-center">Nombre</th>
+                    <th class="bg-primary fs-5 text-center">Direccion</th>
+                    <th class="bg-primary fs-5 text-center">Telefono</th>
+                    <th class="bg-primary fs-5 text-center">Mail</th>
+                    <th class="bg-primary fs-5 text-center">Editar</th>
+                    <th class="bg-primary fs-5 text-center">Eliminar</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each links_art}}
+                  <tr>
+                    <td class="fs-4 text-light">{{nombre_art}}</td>
+                    <td class="fs-5 text-light">{{domicilio_art}}</td>
+                    <td class="fs-5 text-light">{{telefono_art}}</td>
+                    <td class="fs-5 text-light">{{mail_art}}</td>
+                    <td>
+                      <div>
+                          <a class="btn submit-btn border border-ligth" href="/links/editart/{{id_art}}" role="button"
+                            >Editar
+                          </a>
+                      </div>
+                    </td>
+                    <td> 
+                      <div>
+                          <a class="btn submit-btn border border-ligth" href="/links/deleteart/{{id_art}}" role="button"
+                            >Eliminar
+                          </a>
+                      </div>
+                    </td> 
+                  </tr>
+                  {{/each}}
+                </tbody>
+              </table>
+              <div class="row d-flex justify-content-around">
+              <div class="col-md-3">
+                <div class="form-btn">
+                  <a
+                    class="btn submit-btn border border-ligth"
+                    href="/links/addart"
+                    role="button"
+                  >AGREGAR ART</a>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-btn">
+                  <a
+                    class="btn submit-btn border border-ligth"
+                    href="/profile"
+                    role="button"
+                  >CANCELAR</a>
+                </div>
+              </div>
+            </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+<script>
+  const searchInput = document.getElementById("search");
+  const rows = document.querySelectorAll("tbody tr");
+  searchInput.addEventListener("keyup", function (event) {
+    const q = event.target.value.toLowerCase();
+    rows.forEach((row) => {
+      row.querySelector("td").textContent.toLowerCase().includes(q)
+        ? (row.style.display = "table-row")
+        : (row.style.display = "none");
+    });
+  });
+</script>
+

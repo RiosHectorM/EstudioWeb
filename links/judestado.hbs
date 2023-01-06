@@ -1,0 +1,590 @@
+{{>navigation}}
+<div id="booking" class="section">
+  <div class="">
+    <div class="row">
+      <div class="booking-form">
+        <form "/links/edit/{{link.id_cliente}}" method="POST" name="formulario1">
+          {{!-- DATOS PERSONALES --}}
+          <div class="row">
+            <h5 class="badge bg-primary fs-5">DATOS PERSONALES</h5>
+            <div class="col-md-8">
+              <div class="form-group">
+                <span class="form-label">DAMNIFICADO</span>
+                <input class="form-control" type="text" name="damnificado" value="{{link.damnificado}}" />
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                <span class="form-label">DOCUMENTO</span>
+                <input class="form-control" type="text" name="dni_cuil" value="{{link.dni_cuil}}" />
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                <span class="form-label">EDAD</span>
+                <input class="form-control" type="text" value="{{link.edad}}" name="edad" />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-7">
+              <div class="form-group">
+                <span class="form-label">DOMICILIO</span>
+                <input class="form-control" type="text" name="domicilio" value="{{link.domicilio}}" />
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <span class="form-label">TELEFONO</span>
+                <input class="form-control" type="text" name="telefono" value="{{link.telefono}}" />
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                <span class="form-label">Fecha de Ingreso</span>
+                <input class="form-control" type="date" name="fecha_ingreso" value="{{link.fecha_ingreso}}" />
+              </div>
+            </div>
+          </div>
+          <div class="row bg-info p-2 mb-3">
+            <div class="col-md-7">
+              <div class="form-group">
+                <span class="form-label text-dark">DOMICILIO REAL</span>
+                <input class="form-control" type="text" name="domicilio_dni_real" value="{{link.domicilio_dni_real}}" />
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <span class="form-label text-dark">CLAVE FISCAL</span>
+                <input class="form-control" type="text" name="clave_fiscal" value="{{link.clave_fiscal}}" />
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                <span class="form-label text-dark">ESTADO CIVIL</span>
+                <input class="form-control" type="text" name="estado_civil" value="{{link.estado_civil}}" />
+              </div>
+            </div>
+
+          </div>
+          {{!-- DATOS LABORALES --}}
+          <div class="row">
+            <h5 class="badge bg-primary fs-5">DATOS LABORALES</h5>
+            <div class="col-md-6">
+              <div class="form-group">
+                <span class="form-label">EMPRESA</span>
+                <input class="form-control" type="text" value="{{link.empresa}}" name="empresa" />
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <span class="form-label">CUIT</span>
+                <input class="form-control" type="text" value="{{link.cuit_empresa}}" name="cuit_empresa" />
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <span class="form-label">RUBRO</span>
+                <input class="form-control" type="text" value="{{link.rubro_empresa}}" name="rubro_empresa" />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <span class="form-label">DOMICILIO EMPRESA</span>
+                <input class="form-control" type="text" value="{{link.domicilio_empresa}}" name="domicilio_empresa" />
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group" id="divTurno">
+
+              </div>
+            </div>
+            <div class="col-md-2" id="div_horario_inicio">
+              <div class="form-group">
+                <span class="form-label">HORARIO INGRESO</span>
+                <input class="form-control" type="time" name="horario_inicio" value="{{link.horario_inicio}}"
+                  id="horario_inicio" />
+              </div>
+            </div>
+            <div class="col-md-2" id="div_horario_fin">
+              <div class="form-group">
+                <span class="form-label">HORARIO EGRESO</span>
+                <input class="form-control" type="time" name="horario_fin" value="{{link.horario_fin}}"
+                  id="horario_fin" />
+              </div>
+            </div>
+            <div class="col-md-4" id="div_horario_rota" style="display: none;">
+              <div class="form-group">
+                <span class="form-label">HORARIO ROTATIVO</span>
+                <input class="form-control" type="text" placeholder="Ingrese Horarios" name="horario_rota"
+                  value="{{link.horario_rota}}" id="horario_rota" />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <span class="form-label">TAREAS DEL DAMNIFICADO</span>
+                <input class="form-control" type="text" value="{{link.tareas_empresa}}" name="tareas_empresa"
+                  id="tareas_empresa" />
+              </div>
+            </div>
+          </div>
+          <div class="row bg-info p-2 mb-3">
+            <div class="col-md-12">
+              <div class="form-group">
+                <span class="form-label text-dark">DETALLES DEL HECHO</span>
+                <textarea name="detalles" style="height: 15vh;" class="form-control"></textarea>
+              </div>
+            </div>
+          </div>
+          {{!-- DATOS MEDICOS --}}
+          <div class="row">
+            <h5 class="badge bg-primary fs-5">INFORMACION MEDICA</h5>
+            <div class="col-md-6">
+              <div class="form-group">
+                <span class="form-label">ART</span>
+                <select class="form-control" name="nombre_art" id="nombre_art" onchange="actualizar(this.value)">
+                  <option>Seleccione una Opcion</option>
+                </select>
+                {{!-- script carga de datos ART --}}
+                <script>
+                  window.addEventListener('load', function () {
+                    cargar_art();
+                  });
+
+                  function cargar_art() {
+                    const json0 = {{{ data }}};
+                  addOptions("nombre_art", json0);
+                    }
+
+                  function addOptions(domElement, array) {
+                    var select = document.getElementsByName(domElement)[0];
+                    for (value in array) {
+                      var option = document.createElement("option");
+                      option.text = array[value].nombre_art;
+                      if (array[value].nombre_art == "{{link.art}}") {
+                        option.selected = "selected"
+                      }
+                      select.add(option);
+                    }
+
+                  } function actualizar(valor) {
+                    const json = `{{{data}}}`;
+                    const listado_art = JSON.parse(json)
+                    for (let index = 0; index < listado_art.length; index++) {
+                      if (valor == listado_art[index].nombre_art) {
+                        document.formulario1.mail_art.value = listado_art[index].mail_art;
+                        document.formulario1.telefono_art.value = listado_art[index].telefono_art;
+                        document.formulario1.domicilio_art.value = listado_art[index].domicilio_art;
+                      }
+                    }
+                  };
+                </script>
+                
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <span class="form-label">PRESTADOR MEDICO</span>
+                <input class="form-control" type="text" value="{{link.prestador}}" name="prestador" id="prestador" />
+              </div>
+            </div>
+          </div>
+          <div class="row d-none ">
+            <div class="col-md-3">
+              <div class="form-group" id="divHistoria">
+
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group" id="divEstudios">
+
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <span class="form-label">Lugar Estudios</span>
+                <input class="form-control" type="text" value="{{link.lugar_estudios}}" name="lugar_estudios" />
+              </div>
+            </div>
+          </div>
+          
+          {{!-- DATOS JUDICIALES --}}
+          <div class="row">
+            <h5 class="badge bg-primary fs-5">DATOS JUDICIALES</h5>
+          </div>
+
+          <div class="mt-2 bg-info">
+          <!-- Nav tabs -->
+          <ul class="nav nav-tabs d-flex justify-content-around bg-dark fs-4">
+            <li class="nav-item ">
+              <a class="nav-link active" data-bs-toggle="tab" href="#sest">Sin Estado</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="tab" href="#dict">Dictamen</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="tab" href="#juic">Juicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="tab" href="#dese">Desestimado</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="tab" href="#acor">Acordado</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="tab" href="#jlct">Jucio LCT</a>
+            </li>
+          </ul>
+
+          <!-- Tab panels -->
+          <div class="tab-content">
+            <div class="tab-pane container active" id="sest">
+              <div class="col-md-12 text-center" >
+                  <input class="text-center bg-dark text-white p-3 m-2" value="SIN ESTADO JUDICIAL"/>
+              </div>
+            </div>
+            <div class="tab-pane container fade" id="dict">
+              {{!-- MODULO DICTAMEN --}}
+              <div class="row bg-info mt-4 justify-content-center" id="divDictamen">
+                <div class="row" >
+                  <h5 class="badge bg-primary fs-5">MODULO DICTAMEN</h5>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <span class="form-label text-dark">Dictamen</span>
+                      <input class="form-control" type="text" value="{{link.dictamen}}" name="dictamen" />
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <span class="form-label text-dark">Certificado</span>
+                      <input class="form-control" type="text" value="{{link.certificado}}" name="certificado" />
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <span class="form-label text-dark">Destino</span>
+                      <input class="form-control" type="text" value="{{link.destino}}" name="destino" />
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <span class="form-label text-dark">Clausura</span>
+                      <input class="form-control" type="date" name="vence" value="{{link.vence}}" />
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <span class="form-label text-dark">Vence</span>
+                      <input class="form-control" type="date" name="vence" value="{{link.vence}}" />
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group">
+                    <span class="form-label text-dark">OBSERVACIONES</span>
+                    <textarea name="observacionesJudDictamen" style="height: 15vh;" class="form-control"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane container fade" id="juic">
+              {{!-- MODULO JUICIO --}}
+              <div class="row bg-info mt-4 justify-content-center" id="divDictamen">
+                <div class="row" >
+                  <h5 class="badge bg-primary fs-5">MODULO JUICIO</h5>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <span class="form-label text-dark">Juzgado</span>
+                      <input class="form-control" type="text" value="{{link.dictamen}}" name="dictamen" />
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <span class="form-label text-dark">Expediente</span>
+                      <input class="form-control" type="text" value="{{link.certificado}}" name="certificado" />
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <span class="form-label text-dark">Autos</span>
+                      <input class="form-control" type="text" value="{{link.destino}}" name="destino" />
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <span class="form-label text-dark">Proceso</span>
+                      <input class="form-control" type="text" value="{{link.clausura}}" name="clausura" />
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <span class="form-label text-dark">Ordinario / Abreviado</span>
+                      <input class="form-control" type="text" value="{{link.clausura}}" name="clausura" />
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <span class="form-label text-dark">Etapa</span>
+                      <input class="form-control" type="text" value="{{link.clausura}}" name="clausura" />
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <span class="form-label text-dark">Lesion / Patologia</span>
+                      <input class="form-control" type="text" value="{{link.clausura}}" name="clausura" />
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group">
+                    <span class="form-label text-dark">Pendientes</span>
+                    <textarea name="observacionesJudDictamen" style="height: 15vh;" class="form-control"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane container fade" id="dese">
+              {{!-- MODULO DESESTIMADO --}}
+              <div class="row bg-info mt-4 justify-content-center" id="divDictamen">
+                <div class="row" >
+                  <h5 class="badge bg-primary fs-5">MODULO DESESTIMADO</h5>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <span class="form-label text-dark">Proceso</span>
+                      <input class="form-control" type="text" value="{{link.dictamen}}" name="dictamen" />
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <span class="form-label text-dark">Clausura</span>
+                      <input class="form-control" type="text" value="{{link.certificado}}" name="certificado" />
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <span class="form-label text-dark">Vencimiento</span>
+                      <input class="form-control" type="date" name="vence" value="{{link.vence}}" />
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group">
+                    <span class="form-label text-dark">Observaciones</span>
+                    <textarea name="observacionesJudDictamen" style="height: 15vh;" class="form-control"></textarea>
+                  </div>
+                </div>
+
+
+              </div>
+            </div>
+            <div class="tab-pane container fade" id="acor">
+              {{!-- MODULO ACORDADO --}}
+                <div class="row bg-info mt-4 justify-content-center" id="divDictamen">
+                  <div class="row" >
+                    <h5 class="badge bg-primary fs-5">MODULO ACORDADO</h5>
+
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <span class="form-label text-dark">Juzgado</span>
+                        <input class="form-control" type="text" value="{{link.dictamen}}" name="dictamen" />
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <span class="form-label text-dark">Expediente</span>
+                        <input class="form-control" type="text" value="{{link.certificado}}" name="certificado" />
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <span class="form-label text-dark">Actor</span>
+                        <input class="form-control" type="text" value="{{link.certificado}}" name="certificado" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <span class="form-label text-dark">Control Etapas</span>
+                        <input class="form-control" type="text" value="{{link.clausura}}" name="clausura" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <div class="tab-pane container fade" id="jlct">
+              {{!-- MODULO JUICIO LCT --}}
+                <div class="row bg-info mt-4 justify-content-center" id="divDictamen">
+                  <div class="row" >
+                    <h5 class="badge bg-primary fs-5">MODULO JUICIO LCT</h5>
+
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <span class="form-label text-dark">Juzgado</span>
+                        <input class="form-control" type="text" value="{{link.dictamen}}" name="dictamen" />
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <span class="form-label text-dark">Expediente</span>
+                        <input class="form-control" type="text" value="{{link.certificado}}" name="certificado" />
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <span class="form-label text-dark">Actos</span>
+                        <input class="form-control" type="text" value="{{link.certificado}}" name="certificado" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <span class="form-label text-dark">Proceso</span>
+                        <input class="form-control" type="text" value="{{link.clausura}}" name="clausura" />
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <span class="form-label text-dark">Etapa</span>
+                        <input class="form-control" type="text" value="{{link.clausura}}" name="clausura" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group">
+                      <span class="form-label text-dark">Pendientes</span>
+                      <textarea name="observacionesJudDictamen" style="height: 15vh;" class="form-control"></textarea>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+          </div>
+
+          {{!-- botones inferiores --}}
+          <div class="row d-flex justify-content-around">
+            <div class="col-md-3">
+              <div class="form-btn">
+                <button class="submit-btn border border-light" role="button" disabled>GUARDAR ESTADO</button>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-btn">
+                <a class="btn submit-btn border border-light" href="/profile" role="button">CANCELAR</a>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="invisible" style="display: none;">
+  {{!-- <input type="text" id="conInc" name="conInc" value="">
+  <input type="text" id="conIncFechaVD" name="conIncFechaVD" value="">
+  <input type="text" id="conIncFechaPend" name="conIncFechaPend" value="">
+  <input type="text" id="sinInc" name="sinInc" value="">
+  <input type="text" id="sinIncDDI" name="sinIncDDI" value="">
+  <input type="text" id="sinIncDDIJud" name="sinIncDDIJud" value="">
+  <input type="text" id="sinIncDDICerrar" name="sinIncDDICerrar" value="">
+  <input type="text" id="sinIncDA" name="sinIncDA" value="">
+  <input type="text" id="detInc" name="detInc" value="">
+  <input type="text" id="detIncDDI" name="detIncDDI" value="">
+  <input type="text" id="detIncDDIJud" name="detIncDDIJud" value="">
+  <input type="text" id="detIncDDICerrar" name="detIncDDICerrar" value="">
+  <input type="text" id="jud" name="jud" value="">
+  <input type="text" id="judAbr" name="judAbr" value="">
+  <input type="text" id="judOrd" name="judOrd" value="">
+  <input type="text" id="trat" name="trat" value="">
+  <input type="text" id="acord" name="acord" value="">
+  <input type="text" id="cerrarSrt" name="cerrarSrt" value=""> --}}
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+{{!-- timepicker --}}
+<script>
+  flatpickr("input[type=time]", {
+    enableTime: true, noCalendar: true, dateFormat:
+      "H:i"
+  });
+</script>
+{{!-- carga de datos grabados --}}
+<script>
+  function horarios() {
+    selTurno = document.getElementById("turno_empresa").value
+
+    if (selTurno == "Rotativos") {
+      document.getElementById("div_horario_inicio").style.display = "none"
+      document.getElementById("div_horario_fin").style.display = "none"
+      document.getElementById("div_horario_rota").style.display = "block"
+      document.getElementById("horario_rota").value = ""
+      document.getElementById("horario_inicio").value = ""
+      document.getElementById("horario_fin").value = ""
+    } else {
+      document.getElementById("div_horario_rota").style.display = "none"
+      document.getElementById("div_horario_inicio").style.display = "block"
+      document.getElementById("div_horario_fin").style.display = "block"
+      document.getElementById("horario_rota").value = ""
+      document.getElementById("horario_inicio").value = ""
+      document.getElementById("horario_fin").value = ""
+    }
+  }
+
+  if ("{{link.turno_empresa}}" == "Mañana") {
+    document.getElementById("divTurno").innerHTML = '<span class="form-label">TURNO</span><select class="form-control" name="turno_empresa" id="turno_empresa" onchange="horarios()"><option selected>Mañana</option><option>Tarde</option><option>Noche</option><option>Rotativos</option></select><span class="select-arrow"></span>'
+  }
+  if ("{{link.turno_empresa}}" == "Tarde") {
+    document.getElementById("divTurno").innerHTML = '<span class="form-label">TURNO</span><select class="form-control" name="turno_empresa" id="turno_empresa" onchange="horarios()"><option>Mañana</option><option selected>Tarde</option><option>Noche</option><option>Rotativos</option></select><span class="select-arrow"></span>'
+  }
+  if ("{{link.turno_empresa}}" == "Noche") {
+    document.getElementById("divTurno").innerHTML = '<span class="form-label">TURNO</span><select class="form-control" name="turno_empresa" id="turno_empresa" onchange="horarios()"><option>Mañana</option><option>Tarde</option><option selected>Noche</option><option>Rotativos</option></select><span class="select-arrow"></span>'
+  }
+  if ("{{link.turno_empresa}}" == "Rotativos") {
+    document.getElementById("divTurno").innerHTML = '<span class="form-label">TURNO</span><select class="form-control" name="turno_empresa" id="turno_empresa" onchange="horarios()"><option>Mañana</option><option>Tarde</option><option >Noche</option><option selected>Rotativos</option></select><span class="select-arrow"></span>'
+    document.getElementById("div_horario_inicio").style.display = "none"
+    document.getElementById("div_horario_fin").style.display = "none"
+    document.getElementById("div_horario_rota").style.display = "block"
+  }
+
+  if ("{{link.historia_clinica}}" == "Presentada") {
+    document.getElementById("divHistoria").innerHTML = ' <span class="form-label">Historia Clinica</span><select class="form-control" name="historia_clinica"><option selected>Presentada</option><option>Solicitar</option><option>No Requiere</option></select><span class="select-arrow"></span>'
+  }
+  if ("{{link.historia_clinica}}" == "Solicitar") {
+    document.getElementById("divHistoria").innerHTML = ' <span class="form-label">Historia Clinica</span><select class="form-control" name="historia_clinica"><option>Presentada</option><option selected>Solicitar</option><option>No Requiere</option></select><span class="select-arrow"></span>'
+  }
+  if ("{{link.historia_clinica}}" == "No Requiere") {
+    document.getElementById("divHistoria").innerHTML = ' <span class="form-label">Historia Clinica</span><select class="form-control" name="historia_clinica"><option>Presentada</option><option>Solicitar</option><option selected>No Requiere</option></select><span class="select-arrow"></span>'
+  }
+
+  if ("{{link.estudios_medicos}}" == "Presentados") {
+    document.getElementById("divEstudios").innerHTML = ' <span class="form-label">Estudios Medicos</span><select class="form-control" name="estudios_medicos"><option selected>Presentados</option><option>Solicitar</option><option>No Requiere</option></select><span class="select-arrow"></span>'
+  }
+  if ("{{link.estudios_medicos}}" == "Solicitar") {
+    document.getElementById("divEstudios").innerHTML = ' <span class="form-label">Estudios Medicos</span><select class="form-control" name="estudios_medicos"><option>Presentados</option><option selected>Solicitar</option><option>No Requiere</option></select><span class="select-arrow"></span>'
+  }
+  if ("{{link.estudios_medicos}}" == "No Requiere") {
+    document.getElementById("divEstudios").innerHTML = ' <span class="form-label">Estudios Medicos</span><select class="form-control" name="estudios_medicos"><option>Presentados</option><option>Solicitar</option><option selected>No Requiere</option></select><span class="select-arrow"></span>'
+  }
+
+</script>
+{{!-- cambio de estado judicial --}}
+<script>
+  function actualizarestado(selectedValue) {
+    console.log("cambio", selectedValue)
+  }
+</script>

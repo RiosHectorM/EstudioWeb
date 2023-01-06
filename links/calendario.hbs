@@ -1,0 +1,189 @@
+{{>navigation}}
+<div class="container-fluid overflow-hidden gradientefondo">
+  <div class="row">
+    <div class="col d-flex flex-column h-100">
+      <main class="row">
+      {{!-- CONTENIDO PRINCIPAL DE CALENDARIO --}}
+      <div id="booking" class="section" >
+        <div class="">
+          <div class="container">
+            <div class="row">
+              <div class="booking-form">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <h5 class="bg-primary fs-5 text-light text-center">FECHA SELECCIONADA</h5>
+                      <div class="card profile-card-1">
+                        <img src="/img/FondoCard.png" alt="profile-sample1" class="background"/>
+                        <img src="/img/date.png" alt="profile-image" class="profile"/>
+                          <div class="card-content d-inline">
+                            <div class="col-12">
+                              <p class="fs-2"id="dia">DIA</p>
+                            </div>
+                            <div class="col-12 d-flex">
+                            <div class="col-6 justify-content-end">
+                              <p id="mes">MES</p>
+                            </div>
+                            <div class="col-6"> 
+                              <p id="anio">AÑO</p>
+                            </div>
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6" >
+                    <div class="form-group">
+                      <h5 class="bg-primary fs-5 text-light text-center">CALENDARIO</h5>
+                      <input type="date" id="inputFechaList" onchange="actdatetime()"/>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <a class=" d-flex col-md-12">
+                <div class="card-header" id="arrayFechaInHtml"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </main>
+    </div>
+  </div>
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js" integrity="sha256-FEqEelWI3WouFOo2VWP/uJfs1y8KJ++FLh2Lbqc8SJk=" crossorigin="anonymous">
+</script>
+
+<script>
+  function alertachec(gg){
+    let nomcheck= "checkbox"+gg
+    let ooo = document.getElementById(nomcheck).checked
+    alert("grabar esto en tabla eventos"+ooo+ nomcheck)
+  }
+
+  function messelector(mes){
+    switch (mes) {
+      case "01":
+        return "ENERO";
+        break;
+      case "02":
+        return "FEBRERO";
+        break;
+      case "03":
+        return "MARZO";
+        break;
+      case "04":
+        return "ABRIL";
+        break;
+      case "05":
+        return "MAYO";
+        break;
+      case "06":
+        return "JUNIO";
+        break;
+      case "07":
+        return "JULIO";
+        break;
+      case "08":
+        return "AGOSTO";
+        break;
+      case "09":
+        return "SEPTIEMBRE";
+        break;
+      case "10":
+        return "OCTUBRE";
+        break;
+      case "11":
+        return "NOVIEMBRE";
+        break;
+      case "12":
+        return "DICIEMBRE";
+        break;
+    }
+  }
+
+  function cargarimagen(){
+    var date = document.getElementById('inputFechaList').value;
+    document.getElementById("anio").innerHTML = date.slice(0, -6);
+    document.getElementById("mes").innerHTML = messelector(date.slice(5, -3));
+    document.getElementById("dia").innerHTML = date.slice(8);
+  }
+  
+  function actdatetime(){
+    const fechaselect = document.getElementById('inputFechaList').value;
+    const allEvents = {{{dataeventos}}};
+    cargarimagen();
+    constructor = "";
+    document.getElementById("arrayFechaInHtml").innerHTML = constructor;
+
+    constructor ='<table class="table table-hover"><thead><tr><th>Nombre</th><th>DNI</th><th>Telefono</th><th class="d-none d-md-table-cell">Ultimo Evento</th><th class="d-none d-md-table-cell">Estado</th><th class="d-none d-md-table-cell">Tipo</th><th class="d-none d-md-table-cell">Cita Legal</th><th class="d-none d-md-table-cell">Cita Medica</th><th class="d-none d-md-table-cell">Cita Psico</th><th>Perfil</th></tr></thead><tbody>';
+
+    sinFecha = constructor;
+
+    const arrayFechaSelec = allEvents.filter(function(evtFecha){
+    if (evtFecha.fecha_prox_contacto == fechaselect){
+      constructor += '<tr><td><div class="notas-container"><p>'+evtFecha.nombre_cliente_evt+'</p><h6>'+evtFecha.notas+'</h6></div></td>'
+      constructor += '<td>'+evtFecha.dni_evt+'</td>'
+      constructor += '<td>'+evtFecha.telefono+'</td>'
+      constructor += '<td class="d-none d-md-table-cell">'+evtFecha.fecha_evt+'</td>'
+      constructor += '<td class="d-none d-md-table-cell">'+evtFecha.estado+'</td>'
+      constructor += '<td class="d-none d-md-table-cell">'+evtFecha.tipo+'</td>'
+      if (evtFecha.fecha_prox_legal != ""){
+        constructor += '<td class="d-none d-md-table-cell">'+evtFecha.fecha_prox_legal+'</td>'}
+      else{constructor += '<td class="d-none d-md-table-cell">Sin Fecha</td>'}
+        if (evtFecha.fecha_prox_med != ""){
+        constructor += '<td class="d-none d-md-table-cell">'+evtFecha.fecha_prox_med+'</td>'}
+      else{constructor += '<td class="d-none d-md-table-cell">Sin Fecha</td>'}
+      if (evtFecha.fecha_prox_psico != ""){
+        constructor += '<td class="d-none d-md-table-cell">'+evtFecha.fecha_prox_psico+'</td>'}
+      else{constructor += '<td class="d-none d-md-table-cell">Sin Fecha</td>'}
+      constructor += '<td><a class="btn btn-primary submit-btn" href="/links/perfil/'+evtFecha.id_cliente_evt+'" role="button">Perfil</a></td></tr>'}
+    return true
+    });
+    
+  if (sinFecha == constructor)
+    {constructor = '<div class="bg-primary col-12 justify-content-center"><h3 class="text-white text-center ">No hay contactos registrados para la fecha seleccionada</h3></div>'}
+  else{constructor += "</tbody></table>";}
+
+  document.getElementById("arrayFechaInHtml").innerHTML = constructor;
+}
+</script>
+
+<script>
+  $(document).ready(() => {
+    $('#inputFechaList').datetimepicker({
+        inline: true,
+    });
+
+    var datehoy = new Date();
+    mes = (datehoy.getMonth() + 1);
+    mes = "0"+mes
+    mes = mes.slice(-2);
+    dia = datehoy.getDate()
+    dia = "0"+dia
+    dia = dia.slice(-2);
+    var dateini = datehoy.getFullYear()+'-'+mes+'-'+dia;
+    document.getElementById("anio").innerHTML = dateini.slice(0, -6);
+    document.getElementById("mes").innerHTML = messelector(dateini.slice(5, -3));
+    document.getElementById("dia").innerHTML = dateini.slice(8);
+    
+    document.getElementById('inputFechaList').value = dateini
+    actdatetime();
+  });
+
+jQuery('#inputFechaList').datetimepicker({
+  format:'Y-m-d',
+  inline:true,
+  timepicker:false,
+  lang:'es',
+});
+
+cargarimagen();
+</script>
+

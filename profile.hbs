@@ -1,0 +1,91 @@
+{{>navigation}}
+
+
+<div class="container-fluid overflow-hidden">
+  <div class="row overflow-auto">
+
+    <main class="row ">
+      <div class="container">
+        <div class="row d-flex justify-content-center">
+          <div class="col-md-6 column">
+            <div class="card gr-1">
+              <div class="txt">
+                <h1>CLIENTES</h1>
+                <p>Modulo de Administracion de Clientes</p>
+              </div>
+              <div class="container d-flex botones-cards">
+                <a name="xxx1" id="xxx1" class="text-decoration-none col-4" href="/links/add" role="button">Nuevo</a>
+
+                <a name="xxx2" id="xxx2" class="text-decoration-none col-4" href="/links" role="button">Buscar</a>
+                <a name="xxx3" id="xxx3" class="text-decoration-none col-4" href="/links/delete"
+                  role="button">Eliminar</a>
+              </div>
+              <div class="ico-card">
+                <i class="fa-solid fa-users"></i>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 column">
+            <div class="card gr-2">
+              <div class="txt">
+                <h1>ART</h1>
+                <p>Modulo de Administracion de ART</p>
+              </div>
+              <div class="container d-flex botones-cards">
+                <a name="xxx1" id="xxx1" class="text-decoration-none col-4" href="/links/addart"
+                  role="button">Agregar</a>
+                <a name="xxx2" id="xxx2" class="text-decoration-none col-8" href="/links/art" role="button">Buscar /
+                  Eliminar</a>
+              </div>
+              <div class="ico-card">
+                <i class="fa-sharp fa-solid fa-house-medical-flag"></i>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 column">
+            <div class="card gr-3">
+              <div class="txt">
+                <h1>JUDICIAL</h1>
+                <p>Modulo de Administracion de Judiciales</p>
+              </div>
+              <div class="container d-flex botones-cards">
+                <a name="xxx1" id="xxx1" class="text-decoration-none col-5" href="/links/judicial"
+                  role="button">Ingresar</a>
+              </div>
+              <div class="ico-card">
+                <i class="fa-solid fa-gavel"></i>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6  column">
+            <div class="card gr-4">
+              <div class="txt">
+                <h1>CALENDARIO</h1>
+                <p>Administracion de Proximos Contactos</p>
+              </div>
+              <div class="container d-flex botones-cards">
+                <a name="xxx1" id="xxx1" class="text-decoration-none col-3" href="/links/calendario"
+                  role="button">Diario</a>
+                <a name="xxx2" id="xxx2" class="text-decoration-none col-4" href="/links/calendario" role="button">Semanal</a>
+                <a name="xxx3" id="xxx3" class="text-decoration-none col-5" href="/links/calendario" role="button">Pendientes</a>
+              </div>
+              <div class="ico-card">
+                <i class="fa-solid fa-calendar-days"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {{!-- CONTENIDO PRINCIPAL --}}
+    </main>
+  </div>
+</div>
+<script>
+  const hamburger_menu = document.querySelector(".hamburger-menu");
+
+  const container = document.querySelector(".container");
+
+  hamburger_menu.addEventListener("click", () => {
+    container.classList.toggle("active");
+  })
+</script>

@@ -1,0 +1,171 @@
+    if ("{{eventocli.tipo}}"=="Enfermedad"){
+      document.getElementById("divTipoSelec").innerHTML = '<span class="form-label">TIPO</span><select class="form-control" name="tipo" id="tipo" onclick="accidente()"><option>Accidente</option><option>Accidente Initinere</option><option selected>Enfermedad</option></select><span class="select-arrow"></span>'
+      document.getElementById("fecha_acc").style.display = "none"
+      document.getElementById("fecha_pmi").style.display = "block"
+      document.getElementById("fecha_pminput").value = "{{eventocli.fecha_pmi}}"
+    }else{
+      document.getElementById("fecha_accidente").value = "{{eventocli.fecha_accidente}}"
+      
+      if ("{{eventocli.tipo}}"=="Accidente"){
+      document.getElementById("divTipoSelec").innerHTML = '<span class="form-label">TIPO</span><select class="form-control" name="tipo" id="tipo" onclick="accidente()"><option selected>Accidente</option><option>Accidente Initinere</option><option>Enfermedad</option></select><span class="select-arrow"></span>'}
+      else{document.getElementById("divTipoSelec").innerHTML = '<span class="form-label">TIPO</span><select class="form-control" name="tipo" id="tipo" onclick="accidente()"><option>Accidente</option><option selected>Accidente Initinere</option><option>Enfermedad</option></select><span class="select-arrow"></span>'}
+    } 
+
+
+function generadoraHtmlEstados(allEvents){
+  for (let index = 0; index < allEvents.length; index++) {
+    if (allEvents[index].conInc == "on"){
+      constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="CON INCAPACIDAD" disabled name="estado" id="estado"/></div></div>'
+      document.getElementById("divFechaTeams").style.display = "block"}
+    if (allEvents[index].conIncFechaVD == "on"){
+      constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="CON INCAPACIDAD  >>  INGRESE FECHA DE VD  >>" disabled name="estado" id="estado"/></div></div>'
+      document.getElementById("divFechaTeams").style.display = "block"
+      document.getElementById("divFechaVD").style.display = "block"}
+    if (allEvents[index].conIncFechaPend == "on"){
+      constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="CON INCAPACIDAD  >>  FECHA VD PENDIENTE" disabled name="estado" id="estado"/></div></div>'
+      document.getElementById("divFechaTeams").style.display = "block"}
+    if (allEvents[index].sinInc == "on"){
+      constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="SIN INCAPACIDAD" disabled name="estado" id="estado"/></div></div>'}
+    if (allEvents[index].sinIncDDI == "on"){
+      constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="SIN INCAPACIDAD  >>  DDI" disabled name="estado" id="estado"/></div></div>'}
+    if (allEvents[index].sinIncDDIJud == "on"){
+      constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="SIN INCAPACIDAD  >>  DDI  >>  JUDICIAL" disabled name="estado" id="estado"/></div></div>'}
+    if (allEvents[index].sinIncDDICerrar == "on"){
+      constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="SIN INCAPACIDAD  >>  DDI  >>  CERRAR" disabled name="estado" id="estado"/></div></div>'}
+    if (allEvents[index].sinIncDA == "on"){
+      constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="SIN INCAPACIDAD  >>  DA" disabled name="estado" id="estado"/></div></div>'}
+    if (allEvents[index].detInc == "on"){
+      constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="DET INCAPACIDAD" disabled name="estado" id="estado"/></div></div>'
+      document.getElementById("divFechaTeams").style.display = "block"}
+    if (allEvents[index].detIncDDI == "on"){
+      constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="DET INCAPACIDAD >> DDI" disabled name="estado" id="estado"/></div></div>'
+      document.getElementById("divFechaTeams").style.display = "block"}
+    if (allEvents[index].detIncDDIJud == "on"){
+      constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="DET INCAPACIDAD  >>  DDI  >>  JUDICIAL" disabled name="estado" id="estado"/></div></div>'
+      document.getElementById("divFechaTeams").style.display = "block"}
+    if (allEvents[index].detIncDDICerrar == "on"){
+      constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="DET INCAPACIDAD  >>  DDI  >>  CERRAR" disabled name="estado" id="estado"/></div></div>'
+      document.getElementById("divFechaTeams").style.display = "block"}
+    if (allEvents[index].trat == "on"){
+      constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="TRATAMIENTO" disabled name="estado" id="estado"/></div></div>'}
+    if (allEvents[index].jud == "on"){
+      constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="JUDICIAL" disabled name="estado" id="estado"/></div></div>'}
+    if (allEvents[index].judAbr == "on"){
+      constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="JUDICIAL  >>  ABREVIADO" disabled name="estado" id="estado"/></div></div>'}
+    if (allEvents[index].judOrd == "on"){
+      constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="JUDICIAL  >>  ORDINARIO" disabled name="estado" id="estado"/></div></div>'}
+    if (allEvents[index].acord == "on"){
+      constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="ACORDADO" disabled name="estado" id="estado"/></div></div>'}
+    if (allEvents[index].cerrarSrt == "on"){
+      constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="CERRAR (SRT)" disabled name="estado" id="estado"/></div></div>'}
+    document.getElementById("divEstado").innerHTML = constructor
+
+  }
+
+}
+
+
+    {{!-- <div
+      class="col-12 col-sm-3 col-xl-2 px-sm-2 px-0 bg-dark d-flex sticky-top"
+    >
+      <div
+        class="d-flex flex-sm-column flex-row flex-grow-1 align-items-center align-items-sm-start px-3 pt-2 text-white"
+      >
+        <a
+          href="/"
+          class="d-flex align-items-center pb-sm-3 mb-md-0 me-md-auto text-white text-decoration-none"
+        >
+          <span class="fs-5"><i class="fa-solid fa-scale-balanced"></i><span
+              class="d-none d-sm-inline"
+            > Centeno Novillo App</span></span>
+        </a>
+        <ul
+          class="nav nav-pills flex-sm-column flex-row flex-nowrap flex-shrink-1 flex-sm-grow-0 flex-grow-1 mb-sm-auto mb-0 justify-content-center align-items-center align-items-sm-start"
+          id="menu"
+        >
+          <li class="nav-item">
+            <a href="/profile" class="nav-link px-sm-0 px-2">
+              <i class="fa-solid fa-house"></i></i><span
+                class="ms-1 d-none d-sm-inline"
+              >Inicio</span>
+            </a>
+          </li>
+          <li>
+            <a href="/links/calendario" class="nav-link px-sm-0 px-2">
+              <i class="fa-solid fa-calendar-days"></i><span
+                class="ms-1 d-none d-sm-inline"
+              >Calendario</span></a>
+          </li>
+          <li class="dropdown">
+            <a
+              href="#"
+              class="nav-link dropdown-toggle px-sm-0 px-2"
+              id="dropdown"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <i class="fa-solid fa-people-group"></i><span
+                class="ms-1 d-none d-sm-inline"
+              >Clientes</span>
+            </a>
+            <ul
+              class="dropdown-menu dropdown-menu-dark text-small shadow"
+              aria-labelledby="dropdown"
+            >
+              <li><a class="dropdown-item" href="/links/add">Nuevo Cliente</a></li>
+              <li><a class="dropdown-item" href="/links">Buscar Cliente</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a
+              href="#"
+              class="nav-link dropdown-toggle px-sm-0 px-2"
+              id="dropdown"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <i class="fa-solid fa-book-medical"></i><span
+                class="ms-1 d-none d-sm-inline"
+              >ART</span>
+            </a>
+            <ul
+              class="dropdown-menu dropdown-menu-dark text-small shadow"
+              aria-labelledby="dropdown"
+            >
+              <li><a class="dropdown-item" href="/links/addart">Agregar ART</a></li>
+              <li><a class="dropdown-item" href="links/art">Buscar ART</a></li>
+            </ul>
+          </li>
+
+        </ul>
+        <div class="dropdown py-sm-4 mt-sm-auto ms-auto ms-sm-0 flex-shrink-1">
+          <a
+            href="#"
+            class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+            id="dropdownUser1"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <img
+              src="/img/logo.jpg"
+              alt="hugenerd"
+              width="28"
+              height="28"
+              class="rounded-circle"
+            />
+            <span class="d-none d-sm-inline mx-1">{{user.username}}</span>
+          </a>
+          <ul
+            class="dropdown-menu dropdown-menu-dark text-small shadow"
+            aria-labelledby="dropdownUser1"
+          >
+            <li><a class="dropdown-item" href="#">Perfil</a></li>
+            <li><a class="dropdown-item" href="#">Configuracion</a></li>
+            <li>
+              <hr class="dropdown-divider" />
+            </li>
+            <li><a class="dropdown-item" href="/logout">Salir</a></li>
+          </ul>
+        </div>
+      </div>
+    </div> --}}
